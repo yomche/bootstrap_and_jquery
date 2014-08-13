@@ -12,14 +12,6 @@ $(document).ready(function(){
     });
 });
 
-function checkInformation() {
-
-    if (hasEmptyRequiredInput()) {
-         return false;
-    }
-    return Get_scores();
-}
-
 function inputsInformation(inputs) {
     var text = '';
     for (var i = 0; i < inputs.length; i++) {

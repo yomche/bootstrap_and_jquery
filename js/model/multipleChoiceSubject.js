@@ -2,13 +2,13 @@ function MultipleChoiceSubject(name){
   this.name = name;
 }
 MultipleChoiceSubject.prototype.calculation = function(){
-  var  multipleChoiceElement = document.getElementsByName(this.name);
-  var value = [];
-  for(var i = 0; i < multipleChoiceElement.length; i++){
-    if(multipleChoiceElement[i].checked == true){
-      value.push(multipleChoiceElement[i].value);
+  //  var choiceElement =
+    var multipleChoiceElement = $('input[name="' + this.name + '"]:checked');
+    var value = [];
+    if (multipleChoiceElement.length > 0){
+        for (var i = 0; i < multipleChoiceElement.length; i++){
+            value.push(multipleChoiceElement[i].value);
+        }
     }
-  }
-
   return value;
-};
+}

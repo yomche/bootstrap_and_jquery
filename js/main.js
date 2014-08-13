@@ -5,20 +5,20 @@ $(document).ready(function(){
 
             $('#alert').modal('show');
             return false;
-
         }
-
-        return Get_scores();
+        Get_scores();
+        return false;
     });
 });
+
 
 function inputsInformation(inputs) {
     var text = '';
     for (var i = 0; i < inputs.length; i++) {
         var input = inputs[i];
-        var element = document.getElementById(input.id);
+        var element = $('#' + input.id);
 
-        if (element && _.isEmpty(element.value)) {
+        if (element && _.isEmpty(element.val())) {
             $('#'+input.divId).addClass('has-error');
             text += input.text + '';
         }
@@ -50,18 +50,18 @@ function hasEmptyRequiredInput(){
 
     var text = inputsInformation(requiredInputs);
     if(text !== ''){
-      //  alert('请输入' + text + '!');
+
         return true;
     }
-    return false;
+        return false;
 }
 
 function Get_scores() {
 
     var value = fullInTopics() + choiceTopics() + multipleChoiceTopics() + trueOrFalseTopics() + shortAnswerTopics();
     $("#scores").text(value);
+    $('#divScores').addClass('text-danger');
 
-    return false;
 }
 
 function fullInTopics() {
@@ -157,7 +157,7 @@ function shortAnswerTopics() {
         ['模型是对现实世界的简化和抽象,模型是对所研究的系统、过程、事物或概念的一种表达形式。可以是物理实体;可以是某种图形;或者是一种数学表达式。'],
         1, 20);
     var value5 = $('#short5').val();
-        //document.getElementById("short5").value;
+
     if (value5 == shortAnswerSubject.answer[0]) {
         shortAnswerSubject.scores = shortAnswerSubject.scorePerSubject;
     }

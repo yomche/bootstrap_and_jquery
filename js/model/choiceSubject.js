@@ -3,13 +3,10 @@ function ChoiceSubject(name){
 }
 ChoiceSubject.prototype.calculation = function(){
 
-  var choiceElement = document.getElementsByName(this.name);
-  for(var i = 0;i < choiceElement.length; i++){
-    var value = '';
-    if(choiceElement[i].checked == true){
-      value = choiceElement[i].value;
-      break;
-    }
+  var choiceElement = $('input[name="' + this.name + '"]:checked');
+  var value = '';
+  if (choiceElement.length > 0){
+      value = choiceElement[0].value;
   }
   return value;
 };

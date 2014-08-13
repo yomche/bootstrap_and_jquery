@@ -12,32 +12,6 @@ $(document).ready(function(){
     });
 });
 
-    $(document).ready(function () {
-
-        $('#btnSubmit').on('click', function () {
-
-            var requiredInputIds = ['className', 'studentNumber', 'studentName'];
-
-            if (hasEmptyRequiredInput(requiredInputIds)) {
-                $('#validateAlert').modal('show');
-                return false;
-            }
-
-            var topics = buildTopics();
-
-            var answerChecker = new AnswerChecker(topics);
-
-            var totalScoreElement = $('#totalScore');
-            if (totalScoreElement.length > 0) {
-                totalScoreElement.text(answerChecker.getTotalScore());
-                addErrorToFormGroup(totalScoreElement.id);
-            }
-
-            return false;
-        });
-    });
-
-
 function checkInformation() {
 
     if (hasEmptyRequiredInput()) {

@@ -33,17 +33,17 @@ function hasEmptyRequiredInput(){
     var requiredInputs = [
         {
             id: 'studentClass',
-            text: '班级',
+            text: 'class',
             divId: 'class'
         },
         {
             id: 'studentNumber',
-            text: '学号',
+            text: 'number',
             divId: 'number'
         },
         {
             id: 'studentName',
-            text: '姓名',
+            text: 'name',
             divId: 'name'
         }
     ];
@@ -65,8 +65,8 @@ function Get_scores() {
 }
 
 function fullInTopics() {
-    var fullInSubject1 = new Subject('fullInSubject', ['统一建模语言'], 1, 5);
-    var fullInSubject2 = new Subject('fullInSubject', ['继承性', '多态性', '封装性'], 3, 5);
+    var fullInSubject1 = new Subject('fullInSubject', ['Unified modeling language'], 1, 5);
+    var fullInSubject2 = new Subject('fullInSubject', ['Inheritance', 'Polymorphism', 'Encapsulation'], 3, 5);
 
     var value1_1_1 = $('#gap1').val();
 
@@ -77,7 +77,7 @@ function fullInTopics() {
     var value1_2 = [];
     value1_2.push($('#gap2_1').val());
     value1_2.push($('#gap2_2').val());
-    value1_2.push($('gap2_3').val());
+    value1_2.push($('#gap2_3').val());
 
     for (var i = 0; i < fullInSubject2.answer.length; i++) {
         for (var j = 0; j < value1_2.length; j++) {
@@ -154,7 +154,7 @@ function trueOrFalseTopics() {
 
 function shortAnswerTopics() {
     var shortAnswerSubject = new Subject('shortAnswerSubject',
-        ['模型是对现实世界的简化和抽象,模型是对所研究的系统、过程、事物或概念的一种表达形式。可以是物理实体;可以是某种图形;或者是一种数学表达式。'],
+        ['A model is a simplification and abstraction of the real world, and a model is a form of expression of the researched system, process, thing or concept. It can be a physical entity; it can be a figure; or a mathematical expression.'],
         1, 20);
     var value5 = $('#short5').val();
 

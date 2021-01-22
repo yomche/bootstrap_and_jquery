@@ -9,13 +9,23 @@ $(document).ready(function(){
         Get_scores();
         return false;
     });
-
+    $('#studentName').on("change", function(e) {
+        addStudentsClassAndId(studentList, e);
+    });
 });
+
+function addStudentsClassAndId (studentList, e) {
+    studentList.forEach(function (item) {
+        if ( e.target.value == item.studentName) {
+            $('#studentClass').val(item.studentClass); 
+            $('#studentNumber').val(item.studentID);
+        }
+    }) 
+}
 
 $(window).load(function(){    
     addStudents(studentList);
 });
-
 
 function inputsInformation(inputs) {
     var text = '';
@@ -36,9 +46,9 @@ function inputsInformation(inputs) {
 
 function addStudents(studentList){
     var selectList = $('#studentName');
-	studentList.forEach(function (studentName, studentId, map) {
+	studentList.forEach(function (item) {
 		var listElement = document.createElement("option");
-		listElement.innerText = studentName;
+		listElement.innerText = item.studentName;
 		selectList.append(listElement);
 	});
 }

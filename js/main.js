@@ -7,6 +7,7 @@ $(document).ready(function(){
             return false;
         }
         Get_scores();
+        calculateResult();
         return false;
     });
     $('#studentName').on("change", function(e) {
@@ -198,4 +199,14 @@ function shortAnswerTopics() {
         shortAnswerSubject.scores = shortAnswerSubject.scorePerSubject;
     }
     return shortAnswerSubject.scores;
+}
+
+function calculateResult () {
+    var value = fullInTopics() + choiceTopics() + multipleChoiceTopics() + trueOrFalseTopics() + shortAnswerTopics();
+    $('#divResult').addClass('text-danger');
+
+	if (value > 100) return $("#result").text("5");
+	else if (value > 75) return $("#result").text("4");
+	else if (value > 50) return $("#result").text("3");
+	else return $("#result").text("2");
 }

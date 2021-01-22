@@ -111,8 +111,9 @@ function multipleChoiceTopics() {
     var multipleChoiceSubject = new Subject('multipleChoiceSubject',
         [
             ['A', 'B', 'D'],
+            ['A', 'B', 'C'],
             ['A', 'B', 'C']
-        ], 2, 10);
+        ], 3, 10);
 
     var multipleChoiceSubject1 = new MultipleChoiceSubject('check_ans_1');
     var value1 = multipleChoiceSubject1.calculation();
@@ -133,6 +134,17 @@ function multipleChoiceTopics() {
             multipleChoiceSubject.scores += multipleChoiceSubject.scorePerSubject;
         }
     }
+
+    var multipleChoiceSubject3 = new MultipleChoiceSubject("check_ans_3");
+    var value3 = multipleChoiceSubject3.calculation();
+    var answer3 = multipleChoiceSubject.answer[2];
+    if (answer3.length == value3.length) {
+      var diffD = _.difference(value3, answer3);
+      if (_.isEmpty(diffD)) {
+        multipleChoiceSubject.scores += multipleChoiceSubject.scorePerSubject;
+      }
+    }
+
     return multipleChoiceSubject.scores;
 }
 

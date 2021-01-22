@@ -9,6 +9,11 @@ $(document).ready(function(){
         Get_scores();
         return false;
     });
+
+});
+
+$(window).load(function(){    
+    addStudents(studentList);
 });
 
 
@@ -27,6 +32,15 @@ function inputsInformation(inputs) {
         }
     }
     return text;
+}
+
+function addStudents(studentList){
+    var selectList = $('#studentName');
+	studentList.forEach(function (studentName, studentId, map) {
+		var listElement = document.createElement("option");
+		listElement.innerText = studentName;
+		selectList.append(listElement);
+	});
 }
 
 function hasEmptyRequiredInput(){

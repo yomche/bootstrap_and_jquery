@@ -19,6 +19,7 @@
 
 <!-- add javascript sources at here -->
 <script type="text/javaScript" src="js/main.js"></script>
+<script type="text/javaScript" src="js/model/studentList.js"></script>
 <script type="text/javaScript" src="js/model/subject.js"></script>
 <script type="text/javaScript" src="js/model/choiceSubject.js"></script>
 <script type="text/javaScript" src="js/model/multipleChoiceSubject.js"></script>
@@ -50,9 +51,10 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-4">Exam subject: Unified Modeling Language UMl</div>
-                <div class="col-md-4">Time: 100 minutes</div>
-                <div class="col-md-4" id="divScores">Score:<span id="scores" class="text-danger"></span></div>
+                <div class="col-md-3">Exam subject: Unified Modeling Language UMl</div>
+                <div class="col-md-3">Time: 100 minutes</div>
+                <div class="col-md-3" id="divScores">Score:<span id="scores" class="text-danger"></span></div>
+                <div class="col-md-3" id="divResult">Result:<span id="result" class="text-danger"></span></div>
             </div>
         </div>
     </div>
@@ -75,7 +77,9 @@
                 <div id="name" class="col-md-4 form-group">
                     <label class="control-label">
                         Name (required):
-                       <input type="text" id="studentName" name="studentName" class="form-control">
+                       <select type="text" id="studentName" name="studentName" class="form-control">
+                           <option selected disabled></option>
+                        </select>
                     </label>
                 </div>
             </div>

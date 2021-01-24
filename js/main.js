@@ -47,11 +47,13 @@ function inputsInformation(inputs) {
 
 function addStudents(studentList){
     var selectList = $('#studentName');
+    var documentFragment = $(document.createDocumentFragment());
 	studentList.forEach(function (item) {
 		var listElement = document.createElement("option");
 		listElement.innerText = item.studentName;
-		selectList.append(listElement);
-	});
+		documentFragment.append(listElement);
+    });
+    selectList.append(documentFragment);
 }
 
 function hasEmptyRequiredInput(){

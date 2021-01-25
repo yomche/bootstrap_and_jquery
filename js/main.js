@@ -7,10 +7,26 @@ $(document).ready(function(){
             return false;
         }
         Get_scores();
+        calculateResult();
         return false;
+    });
+    $('#studentName').on("change", function(e) {
+        addStudentsClassAndId(studentList, e);
     });
 });
 
+function addStudentsClassAndId (studentList, e) {
+    studentList.forEach(function (item) {
+        if ( e.target.value == item.studentName) {
+            $('#studentClass').val(item.studentClass); 
+            $('#studentNumber').val(item.studentID);
+        }
+    }) 
+}
+
+$(window).load(function(){    
+    addStudents(studentList);
+});
 
 function inputsInformation(inputs) {
     var text = '';
@@ -29,21 +45,32 @@ function inputsInformation(inputs) {
     return text;
 }
 
+function addStudents(studentList){
+    var selectList = $('#studentName');
+    var documentFragment = $(document.createDocumentFragment());
+	studentList.forEach(function (item) {
+		var $listElement = $('<option>');
+		$listElement.text(item.studentName);
+		documentFragment.append($listElement);
+    });
+    selectList.append(documentFragment);
+}
+
 function hasEmptyRequiredInput(){
     var requiredInputs = [
         {
             id: 'studentClass',
-            text: '班级',
+            text: 'class',
             divId: 'class'
         },
         {
             id: 'studentNumber',
-            text: '学号',
+            text: 'number',
             divId: 'number'
         },
         {
             id: 'studentName',
-            text: '姓名',
+            text: 'name',
             divId: 'name'
         }
     ];
@@ -65,8 +92,8 @@ function Get_scores() {
 }
 
 function fullInTopics() {
-    var fullInSubject1 = new Subject('fullInSubject', ['统一建模语言'], 1, 5);
-    var fullInSubject2 = new Subject('fullInSubject', ['继承性', '多态性', '封装性'], 3, 5);
+    var fullInSubject1 = new Subject('fullInSubject', ['Unified modeling language'], 1, 5);
+    var fullInSubject2 = new Subject('fullInSubject', ['Inheritance', 'Polymorphism', 'Encapsulation'], 3, 5);
 
     var value1_1_1 = $('#gap1').val();
 
@@ -77,7 +104,7 @@ function fullInTopics() {
     var value1_2 = [];
     value1_2.push($('#gap2_1').val());
     value1_2.push($('#gap2_2').val());
-    value1_2.push($('gap2_3').val());
+    value1_2.push($('#gap2_3').val());
 
     for (var i = 0; i < fullInSubject2.answer.length; i++) {
         for (var j = 0; j < value1_2.length; j++) {
@@ -111,8 +138,9 @@ function multipleChoiceTopics() {
     var multipleChoiceSubject = new Subject('multipleChoiceSubject',
         [
             ['A', 'B', 'D'],
+            ['A', 'B', 'C'],
             ['A', 'B', 'C']
-        ], 2, 10);
+        ], 3, 10);
 
     var multipleChoiceSubject1 = new MultipleChoiceSubject('check_ans_1');
     var value1 = multipleChoiceSubject1.calculation();
@@ -133,6 +161,17 @@ function multipleChoiceTopics() {
             multipleChoiceSubject.scores += multipleChoiceSubject.scorePerSubject;
         }
     }
+
+    var multipleChoiceSubject3 = new MultipleChoiceSubject("check_ans_3");
+    var value3 = multipleChoiceSubject3.calculation();
+    var answer3 = multipleChoiceSubject.answer[2];
+    if (answer3.length == value3.length) {
+      var diffD = _.difference(value3, answer3);
+      if (_.isEmpty(diffD)) {
+        multipleChoiceSubject.scores += multipleChoiceSubject.scorePerSubject;
+      }
+    }
+
     return multipleChoiceSubject.scores;
 }
 
@@ -154,7 +193,7 @@ function trueOrFalseTopics() {
 
 function shortAnswerTopics() {
     var shortAnswerSubject = new Subject('shortAnswerSubject',
-        ['模型是对现实世界的简化和抽象,模型是对所研究的系统、过程、事物或概念的一种表达形式。可以是物理实体;可以是某种图形;或者是一种数学表达式。'],
+        ['A model is a simplification and abstraction of the real world, and a model is a form of expression of the researched system, process, thing or concept. It can be a physical entity; it can be a figure; or a mathematical expression.'],
         1, 20);
     var value5 = $('#short5').val();
 
@@ -162,4 +201,14 @@ function shortAnswerTopics() {
         shortAnswerSubject.scores = shortAnswerSubject.scorePerSubject;
     }
     return shortAnswerSubject.scores;
+}
+
+function calculateResult () {
+    var value = fullInTopics() + choiceTopics() + multipleChoiceTopics() + trueOrFalseTopics() + shortAnswerTopics();
+    $('#divResult').addClass('text-danger');
+
+	if (value > 100) return $("#result").text("5");
+	else if (value > 75) return $("#result").text("4");
+	else if (value > 50) return $("#result").text("3");
+	else return $("#result").text("2");
 }

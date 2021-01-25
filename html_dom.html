@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 
 <meta charset ="UTF-8">
 <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>统一建模语言理论测试</title>
+<title>Unified Modeling Language Theory Test</title>
 <!-- add css sources at here -->
 <!--<link rel="stylesheet" href="css/myStyle.css"/>-->
 <link rel="stylesheet" href="lib/bootstrap-3.2.0-dist/css/bootstrap.css"/>
@@ -19,6 +19,7 @@
 
 <!-- add javascript sources at here -->
 <script type="text/javaScript" src="js/main.js"></script>
+<script type="text/javaScript" src="js/model/studentList.js"></script>
 <script type="text/javaScript" src="js/model/subject.js"></script>
 <script type="text/javaScript" src="js/model/choiceSubject.js"></script>
 <script type="text/javaScript" src="js/model/multipleChoiceSubject.js"></script>
@@ -34,25 +35,26 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span><span class="sr-only">close</span></button>
-                    <h3 class="modal-title text-danger">警告！</h3>
+                    <h3 class="modal-title text-danger">caveat!</h3>
                 </div>
                 <div class="modal-body">
-                    <p>请认真检查并填写必填项目！</p>
+                    <p>Please check carefully and fill in the required items!</p>
                 </div>
                 <div class="modal-footer">
-                   <button type="button" class="btn btn-primary" data-dismiss="modal">请确认信息</button>
+                   <button type="button" class="btn btn-primary" data-dismiss="modal">Please confirm the information</button>
                 </div>
             </div>
         </div>
     </div>
-    <h1 class="text-center">统一建模语言理论测试</h1>
+    <h1 class="text-center">Unified Modeling Language Theory Test</h1>
 
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-4">考试科目:统一建模语言UMl</div>
-                <div class="col-md-4">时间:100分</div>
-                <div class="col-md-4" id="divScores">得分:<span id="scores" class="text-danger"></span></div>
+                <div class="col-md-3">Exam subject: Unified Modeling Language UMl</div>
+                <div class="col-md-3">Time: 100 minutes</div>
+                <div class="col-md-3" id="divScores">Score:<span id="scores" class="text-danger"></span></div>
+                <div class="col-md-3" id="divResult">Result:<span id="result" class="text-danger"></span></div>
             </div>
         </div>
     </div>
@@ -62,20 +64,22 @@
             <div class="row">
                 <div id="class" class="col-md-4 form-group">
                     <label class="control-label">
-                      班级（必填）：
+                        Class (required):
                       <input type="text" id="studentClass" name="studentClass" class="form-control">
                     </label>
                 </div>
                 <div id="number" class="col-md-4 form-group">
                     <label class="control-label">
-                      学号（必填）：
+                        Student ID (required):
                       <input type="text" id="studentNumber" name="studentNumber" class="form-control">
                     </label>
                 </div>
                 <div id="name" class="col-md-4 form-group">
                     <label class="control-label">
-                       姓名（必填）：
-                       <input type="text" id="studentName" name="studentName" class="form-control">
+                        Name (required):
+                       <select type="text" id="studentName" name="studentName" class="form-control">
+                           <option selected disabled></option>
+                        </select>
                     </label>
                 </div>
             </div>
@@ -85,13 +89,13 @@
 
     <div class="panel panel-success">
     <div class="panel-heading">
-       <h2 class="panel-title">一、填空题(每空5分，共4空)</h2>
+       <h2 class="panel-title">1. Fill in the blanks (5 points for each blank, 4 blanks in total)</h2>
     </div>
         <div class="panel-body">
             <ol>
                 <li class="">
                     <div class="form-group">
-                        <label class="control-label">UML 的中文全称是:</label>
+                        <label class="control-label">The full English name of UML is:</label>
                         <div class="form-inline">
                             <label><input type="text" name="gap_ans_1" id="gap1" class="form-control">.</label>
                         </div>
@@ -99,7 +103,7 @@
                 </li>
                 <li>
                     <div class="form-group">
-                        <label class="control-label">对象最突出的特征是:</label>
+                        <label class="control-label">The most prominent features of the subject are:</label>
                         <div class="form-inline">
                             <label><input type="text" name="gap_ans_2" id="gap2_1" class="form-control"></label>
                             <label><input type="text" name="gap_ans_2" id="gap2_2" class="form-control"></label>
@@ -114,41 +118,41 @@
 
    <div class="panel panel-success">
        <div class="panel-heading">
-           <h2 class="panel-title">二 、选择题(每题10分，共2题)</h2>
+           <h2 class="panel-title">2. Single choice questions (10 points for each question, 2 questions in total)</h2>
        </div>
        <div class="panel-body">
            <ol>
                <li>
                    <div class="form-group">
-                       <label class="control-label"> UML与软件工程的关系是:</label>
+                       <label class="control-label">The relationship between UML and software engineering is:</label>
                        <div class="radio">
-                           <label><input type="radio" name="radio_ans_1" id="sel1_1" value="A">(A)UML就是软件工程</label>
+                           <label><input type="radio" name="radio_ans_1" id="sel1_1" value="A">(A) UML is software engineering</label>
                        </div>
                        <div class="radio">
-                           <label><input type="radio" name="radio_ans_1" id="sel1_2" value="B">(B)UML参与到软件工程中软件开发过UML</label>
+                           <label><input type="radio" name="radio_ans_1" id="sel1_2" value="B">(B) UML has participated in software engineering and software has developed UML</label>
                        </div>
                        <div class="radio">
-                           <label><input type="radio" name="radio_ans_1" id="sel1_3" value="C">(C)UML与软件工程无关</label>
+                           <label><input type="radio" name="radio_ans_1" id="sel1_3" value="C">(C) UML has nothing to do with software engineering</label>
                        </div>
                        <div class="radio">
-                           <label><input type="radio" name="radio_ans_1" id="sel1_4" value="D">(D)UML是软件工程的一部分</label>
+                           <label><input type="radio" name="radio_ans_1" id="sel1_4" value="D">(D) UML is part of software engineering</label>
                        </div>
                    </div>
                </li>
                <li>
                    <div class="form-group">
-                       <label class="control-label"> Java 语言支持:</label>
+                       <label class="control-label"> Java language support:</label>
                        <div class="radio">
-                           <label> <input type="radio" name="radio_ans_2" id="sel2_1" value="A">(A)单继承</label>
+                           <label> <input type="radio" name="radio_ans_2" id="sel2_1" value="A">(A) Single inheritance</label>
                        </div>
                        <div class="radio">
-                           <label><input type="radio" name="radio_ans_2" id="sel2_2" value="B">(B)多继承</label>
+                           <label><input type="radio" name="radio_ans_2" id="sel2_2" value="B">(B) Multiple inheritance</label>
                        </div>
                        <div class="radio">
-                           <label><input type="radio" name="radio_ans_2" id="sel2_3" value="C">(C)单继承和多继承都支持</label>
+                           <label><input type="radio" name="radio_ans_2" id="sel2_3" value="C">(C) Both single inheritance and multiple inheritance are supported</label>
                        </div>
                        <div class="radio">
-                           <label><input type="radio" name="radio_ans_2" id="sel2_4" value="D">(D)继承和多继承都不支持</label>
+                           <label><input type="radio" name="radio_ans_2" id="sel2_4" value="D">(D) Inheritance and multiple inheritance are not supported</label>
                        </div>
                    </div>
                </li>
@@ -159,57 +163,74 @@
 
    <div class="panel panel-success">
        <div class="panel-heading">
-           <h2 class="panel-title">三、多选题(每题10分，共2题)</h2>
+           <h2 class="panel-title">3. Multiple choice questions (10 points for each question, 3 questions in total)</h2>
        </div>
        <div class="panel-body">
            <ol>
                <li>
                    <div class="form-group">
-                       <label class="control-label">用例的粒度分为以下哪三种。</label>
+                       <label class="control-label">The granularity of use cases is divided into the following three types.</label>
                        <div class="checkbox">
-                          <label><input type="checkbox" name="check_ans_1" id="mul1_1" value="A">(A)概述级</label>
+                          <label><input type="checkbox" name="check_ans_1" id="mul1_1" value="A">(A) Overview level</label>
                        </div>
                        <div class="checkbox">
-                          <label><input type="checkbox" name="check_ans_1" id="mul1_2" value="B">(B)需求级</label>
+                          <label><input type="checkbox" name="check_ans_1" id="mul1_2" value="B">(B) Demand level</label>
                        </div>
                        <div class="checkbox">
-                          <label><input type="checkbox" name="check_ans_1" id="mul1_3" value="C">(C)用户目标级</label>
+                          <label><input type="checkbox" name="check_ans_1" id="mul1_3" value="C">(C) User target level</label>
                        </div>
                        <div class="checkbox">
-                          <label><input type="checkbox" name="check_ans_1" id="mul1_4" value="D">(D)子功能级</label>
+                          <label><input type="checkbox" name="check_ans_1" id="mul1_4" value="D">(D) Sub-function level</label>
                        </div>
                    </div>
                </li>
                <li>
                    <div class="form-group">
-                       <label class="control-label">类图由以下哪三部分组成。</label>
+                       <label class="control-label">The class diagram consists of the following three parts.</label>
                        <div class="checkbox">
-                          <label><input type="checkbox" name="check_ans_2" id="mul2_1" value="A">(A)名称(Name)</label>
+                          <label><input type="checkbox" name="check_ans_2" id="mul2_1" value="A">(A) Name</label>
                        </div>
                        <div class="checkbox">
-                          <label><input type="checkbox" name="check_ans_2" id="mul2_2" value="B">(B)属性(Attribute)</label>
+                          <label><input type="checkbox" name="check_ans_2" id="mul2_2" value="B">(B) Attribute</label>
                        </div>
                        <div class="checkbox">
-                          <label><input type="checkbox" name="check_ans_2" id="mul2_3" value="C">(C)操作(Operation)</label>
+                          <label><input type="checkbox" name="check_ans_2" id="mul2_3" value="C">(C) Operation</label>
                        </div>
                        <div class="checkbox">
-                          <label><input type="checkbox" name="check_ans_2" id="mul2_4" value="D">(D)方法(Function)</label>
+                          <label><input type="checkbox" name="check_ans_2" id="mul2_4" value="D">(D) Function</label>
                        </div>
                    </div>
                </li>
+               <li>
+                <div class="form-group">
+                    <label class="control-label">Activity diagrams are constructed from a limited number of shapes, connected with arrows. What shape types are most important?</label>
+                    <div class="checkbox">
+                       <label><input type="checkbox" name="check_ans_3" id="mul3_1" value="A">(A) Ellipses</label>
+                    </div>
+                    <div class="checkbox">
+                       <label><input type="checkbox" name="check_ans_3" id="mul3_2" value="B">(B) Diamonds</label>
+                    </div>
+                    <div class="checkbox">
+                       <label><input type="checkbox" name="check_ans_3" id="mul3_3" value="C">(C) Bars</label>
+                    </div>
+                    <div class="checkbox">
+                       <label><input type="checkbox" name="check_ans_3" id="mul3_4" value="D">(D) None of that </label>
+                    </div>
+                </div>
+            </li>
            </ol>
        </div>
    </div>
 
    <div class="panel panel-success">
        <div class="panel-heading">
-           <h2 class="panel-title">四、判断题(每题10分，共2题)</h2>
+           <h2 class="panel-title">4. True or False Questions (10 points for each question, 2 questions in total)</h2>
        </div>
        <div class="panel-body">
            <ol>
                <li>
                    <div class="form-group">
-                       <label class="control-label">用例图只是用于和客户交流和沟通的,用于确定需求 。</label>
+                       <label class="control-label">Use case diagrams are only used to communicate and communicate with customers, to determine requirements.</label>
                            <div class="radio">
                                <label><input type="radio" id="tureOrFalse1_1" name="ans_1" value="yes">
                                    <span class="glyphicon glyphicon-ok text-success"></span>
@@ -226,7 +247,7 @@
                </li>
                <li>
                    <div class="form-group">
-                       <label class="control-label"> 在状态图中,终止状态在一个状态图中允许有任意多个。</label>
+                       <label class="control-label"> In the state diagram, any number of termination states are allowed in a state diagram.</label>
                            <div class="radio">
                                <label><input type="radio" id="tureOrFalse2_1" name="ans_2" value="yes">
                                    <span class="glyphicon glyphicon-ok text-success"></span>
@@ -247,14 +268,14 @@
 
    <div class="panel panel-success">
        <div class="panel-heading">
-           <h2 class="panel-title">五、简答题(每题20分，共1题)</h2>
+           <h2 class="panel-title">5. Short answer questions (20 points for each question, 1 question in total)</h2>
        </div>
        <div class="panel-body">
            <ol>
                <li>
                    <div class="form-group">
                        <label class="control-label">
-                           简述什么是模型以及模型的表现形式?
+                        Briefly describe what a model is and how the model is expressed?
                        </label>
                    </div>
                    <label><textarea rows="4" id="short5"></textarea></label>
@@ -264,7 +285,7 @@
    </div>
 
    <p class="text-center">
-   <input type="submit" id="btnSubmit" class="btn btn-success" value="提交">（请仔细核对后提交！）
+   <input type="submit" id="btnSubmit" class="btn btn-success" value="submit">(Please check carefully and submit!)
 
    </form>
  </div>
